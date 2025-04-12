@@ -14,7 +14,10 @@ local on_attach = function(_, bufnr)
 end
 
 -- Setup handlers
-local servers = { "pyright", "clangd", "lua_ls" }
+local servers = { "pyright",
+    "clangd",
+    "lua_ls",
+    "bashls"}
 
 for _, server in ipairs(servers) do
   lspconfig[server].setup({

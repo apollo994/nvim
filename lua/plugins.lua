@@ -79,7 +79,10 @@ require("lazy").setup({
     },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "pyright", "clangd", "lua_ls" }, -- adjust as needed
+        ensure_installed = { "pyright",
+                    "clangd",
+                    "lua_ls",
+                    "bashls"}, -- adjust as needed
         automatic_installation = true,
       })
     end,
