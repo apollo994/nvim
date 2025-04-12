@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Default on_attach function for keymaps
 local on_attach = function(_, bufnr)
@@ -18,6 +19,6 @@ local servers = { "pyright", "clangd", "lua_ls" }
 for _, server in ipairs(servers) do
   lspconfig[server].setup({
     on_attach = on_attach,
-    capabilities = vim.lsp.protocol.make_client_capabilities(),
+    capabilities = capabilities,
   })
 end
