@@ -10,7 +10,7 @@ require("gitsigns").setup({
   numhl = false,
   linehl = false,
   word_diff = false,
-}
+})
 -- keymap supressed for now
 
 --  on_attach = function(bufnr)
