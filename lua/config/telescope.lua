@@ -6,6 +6,6 @@ require("telescope").setup({
 
   vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", {
     desc = "Telescope: Search in files"
-  })
-
+  }),
+  vim.keymap.set("n", "<leader><space>", "<cmd>Telescope buffers<CR>", { desc = "Telescope: List buffers" }),
 })

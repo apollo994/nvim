@@ -7,3 +7,5 @@ require("settings")
 -- Load plugins
 require("plugins")
 
+-- Load basic keymaps
+require("keymaps")

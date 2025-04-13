@@ -126,4 +126,14 @@ require("lazy").setup({
   end,
   keys = { [[<C-\>]] }, -- loads on terminal toggle
   },
+  -- Buffer line
+  {
+  "akinsho/bufferline.nvim",
+  version = "*",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("config.bufferline")
+  end,
+  event = "VeryLazy",
+  },
 })
