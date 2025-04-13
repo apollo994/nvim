@@ -21,14 +21,14 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
       dependencies = {
-        {
           "nvim-treesitter/nvim-treesitter-textobjects",
-        },
       },
       config = function()
         require("config.treesitter")
       end,
   },
+
+  { "nvim-tree/nvim-web-devicons", opts = {} },
 
   -- File explorer
   {
@@ -48,7 +48,8 @@ require("lazy").setup({
   {
       "nvim-telescope/telescope.nvim",
       dependencies = {
-          "nvim-lua/plenary.nvim"
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons",
       },
       config = function ()
             require("config.telescope")
@@ -87,6 +88,7 @@ require("lazy").setup({
       })
     end,
   },
+
   -- Completion engine
   {
     "hrsh7th/nvim-cmp",
@@ -101,4 +103,10 @@ require("lazy").setup({
       require("config.cmp")
     end,
   },
+
+  -- Git utility
+  {
+  "tpope/vim-fugitive",
+  cmd = { "Git", "G", "Gstatus", "Gdiffsplit", "Gread", "Gwrite" },
+  }
 })
