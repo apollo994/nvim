@@ -115,5 +115,15 @@ require("lazy").setup({
     require("config.gitsigns")
   end,
   event = { "BufReadPre", "BufNewFile" },
-  }
+  },
+
+  -- Toggle term
+  {
+  "akinsho/toggleterm.nvim",
+  version = "*",
+  config = function()
+    require("config.toggleterm")
+  end,
+  keys = { [[<C-\>]] }, -- loads on terminal toggle
+  },
 })
