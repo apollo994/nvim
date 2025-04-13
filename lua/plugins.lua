@@ -108,5 +108,12 @@ require("lazy").setup({
   {
   "tpope/vim-fugitive",
   cmd = { "Git", "G", "Gstatus", "Gdiffsplit", "Gread", "Gwrite" },
+  },
+  {
+  "lewis6991/gitsigns.nvim",
+  config = function()
+    require("config.gitsigns")
+  end,
+  event = { "BufReadPre", "BufNewFile" },
   }
 })
