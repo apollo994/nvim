@@ -1,5 +1,12 @@
 local map = vim.keymap.set
 
+-- Basics
+map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
+map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit window" })
+ 
+
+cdjca  w
+
 -- Buffer 
 map("n", "<leader>bc", "<cmd>bd<CR>", { desc = "Close current buffer" })
 
