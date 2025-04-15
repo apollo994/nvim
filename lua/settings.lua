@@ -21,3 +21,8 @@ opt.termguicolors = true
 
 -- Clipboard
 opt.clipboard = "unnamedplus"
+
+-- Cursor 
+opt.cursorline = true
+opt.cursorlineopt = "line" -- or "line" for full highlight
+opt.updatetime = 200
