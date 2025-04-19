@@ -121,6 +121,7 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   cmd = { "Git", "G", "Gstatus", "Gdiffsplit", "Gread", "Gwrite" },
   },
+
   {
   "lewis6991/gitsigns.nvim",
   config = function()
@@ -147,5 +148,13 @@ require("lazy").setup({
     require("config.bufferline")
   end,
   event = "VeryLazy",
+  },
+
+  -- Comment bloks
+  {
+  "numToStr/Comment.nvim",
+  config = function()
+    require("Comment").setup()
+  end,
   },
 })
