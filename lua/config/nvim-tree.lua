@@ -5,6 +5,7 @@ require("nvim-tree").setup({
     },
     filters = {
       dotfiles = true,
+      git_ignored = false,
     },
     vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {
     desc = "Toggle file explorer (NvimTree)",
