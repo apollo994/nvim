@@ -29,17 +29,6 @@ require("nvim-treesitter.configs").setup({
         enable = true,
     },
 
-    -- highlight definitions
---    refactor = {
---        highlight_current_scope = {
---            enable = true,
---        },
---        highlight_definitions = {
---            enable = true,
---            clear_on_cursor_move = true,
---        },
---    },
-
     -- Incremental selection
     incremental_selection = {
         enable = true,
@@ -62,5 +51,16 @@ require("nvim-treesitter.configs").setup({
                 ["ic"] = "@class.inner",
             },
         },
+        move = {
+            enable = true,
+            set_jumps = true,             -- so movements are recorded in the jumplist
+            goto_next_start = {
+                ["]f"] = "@function.outer", -- jump to start of next function
+            },
+            goto_previous_start = {
+                ["[f"] = "@function.outer", -- jump to start of previous function
+            },
+        },
     },
 })
+
