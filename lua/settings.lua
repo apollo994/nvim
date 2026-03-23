@@ -7,7 +7,7 @@ opt.relativenumber = true
 -- Indentation
 opt.tabstop = 4
 opt.shiftwidth = 4
-opt.expandtab = true
+opt.expandtab = false
 
 -- Search
 opt.ignorecase = true
