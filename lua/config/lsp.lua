@@ -43,10 +43,7 @@ vim.diagnostic.config({
 })
 
 -- Setup handlers
-local servers = { "pyright",
-    "clangd",
-    "lua_ls",
-    "bashls" }
+local servers = { "pyright", "clangd", "lua_ls", "bashls" }
 
 for _, server in ipairs(servers) do
     lspconfig[server].setup({
@@ -54,3 +51,4 @@ for _, server in ipairs(servers) do
         capabilities = capabilities,
     })
 end
+

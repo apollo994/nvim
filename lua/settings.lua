@@ -20,8 +20,7 @@ opt.mouse = "a"
 opt.termguicolors = true
 
 -- Clipboard
--- opt.clipboard = "unnamedplus"
-
+opt.clipboard = "unnamedplus"
 
 vim.g.clipboard = {
       name = 'OSC 52',
@@ -40,3 +39,4 @@ vim.g.clipboard = {
 opt.cursorline = true
 opt.cursorlineopt = "line" -- or "line" for full highlight
 opt.updatetime = 200
+opt.scrolloff = 999

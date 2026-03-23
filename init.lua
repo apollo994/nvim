@@ -9,3 +9,8 @@ require("plugins")
 
 -- Load basic keymaps
 require("keymaps")
+
+
+
+require 'custom/filetypes'
+require 'custom/nextflow'
