@@ -28,19 +28,58 @@ Each plugin's config lives in `lua/config/<plugin-name>.lua` and is loaded via t
 - `lua/custom/filetypes.lua`: registers `.smk`/`Snakefile` as `snakemake` and `.nf`/`nextflow.config` as `nextflow`
 - `lua/custom/nextflow.lua`: starts `bin/language-server-all.jar` (Java) as the Nextflow LSP, rooted at `nextflow.config` or `.git`
 
+### Formatting & Linting
+Python formatting is handled by `none-ls` (`lua/config/none-ls.lua`): black + isort for formatting, ruff for linting (line-length 88). Triggered via `<Space>F`.
+
 ### Clipboard
 Uses OSC 52 protocol (`vim.g.clipboard`) for clipboard support over SSH/remote sessions.
+
+### Indentation
+Tabs (not spaces), width = 4. Set in `lua/settings.lua`.
 
 ## Key Mappings Reference
 
 | Action | Keymap |
 |--------|--------|
-| Completion trigger | `<C-Space>` |
+| **Files & Buffers** | |
+| Toggle file explorer | `<leader>e` |
+| Find files (Telescope) | `<leader>ff` |
+| Live grep (Telescope) | `<leader>fg` |
+| List buffers (Telescope) | `<leader><space>` |
+| Next buffer | `<Tab>` |
+| Prev buffer | `<S-Tab>` |
+| Jump to buffer 1/2/3 | `<leader>1` / `<leader>2` / `<leader>3` |
+| Close buffer | `<leader>bc` |
+| **Windows** | |
+| Split vertical | `<leader>sv` |
+| Split horizontal | `<leader>sh` |
+| Close window | `<leader>wc` |
+| Navigate splits | `<C-h/j/k/l>` |
+| **File operations** | |
+| Save | `<leader>w` |
+| Quit | `<leader>q` |
+| Close tab | `<leader>tc` |
+| **LSP** | |
+| Go to definition | `gd` |
+| Hover docs | `K` |
+| References | `gr` |
+| Rename symbol | `<leader>rn` |
+| Code action | `<leader>ca` |
+| Format | `<Space>F` |
+| **Completion** | |
+| Trigger completion | `<C-Space>` |
 | Confirm completion | `<CR>` |
+| Navigate completion | `<Tab>` / `<S-Tab>` |
+| **Terminal** | |
 | Toggle terminal | `<C-\>` |
-| Treesitter expand selection | `<leader>v` |
-| Treesitter shrink selection | `<leader>V` |
+| **Treesitter** | |
+| Expand selection | `<leader>v` |
+| Shrink selection | `<leader>V` |
 | Next function | `]f` |
 | Previous function | `[f` |
 | Function text object | `af` / `if` |
 | Class text object | `ac` / `ic` |
+| **Comments** | |
+| Toggle line comment | `gcc` |
+| Toggle visual comment | `gc` |
+| Toggle block comment | `gbc` / `gb` |
