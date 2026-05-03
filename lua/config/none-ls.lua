@@ -12,7 +12,7 @@ null_ls.setup({
     }),
   },
   on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       vim.keymap.set("n", "<leader>F", function()
         vim.lsp.buf.format({ async = true })
       end, { buffer = bufnr, desc = "Format with NoneLS" })
