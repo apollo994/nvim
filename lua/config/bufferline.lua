@@ -19,8 +19,8 @@ require("bufferline").setup({
     diagnostics = "nvim_lsp",   -- show LSP errors on tabs
     always_show_bufferline = true,
   },
-  vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" }),
-  vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" }),
+  vim.keymap.set("n", "<leader><Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" }),
+  vim.keymap.set("n", "<leader><S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" }),
   vim.keymap.set("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Go to buffer 1" }),
   vim.keymap.set("n", "<leader>2", "<cmd>BufferLineGoToBuffer 2<CR>", { desc = "Go to buffer 2" }),
   vim.keymap.set("n", "<leader>3", "<cmd>BufferLineGoToBuffer 3<CR>", { desc = "Go to buffer 3" }),

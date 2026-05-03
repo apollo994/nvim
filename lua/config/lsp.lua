@@ -19,16 +19,29 @@ local on_attach = function(_, bufnr)
         vim.lsp.buf.format { async = true }
     end, { buffer = bufnr, silent = true, desc = "Format buffer" })
 
-    -- highlight under cursor
+    -- highlight under cursor (only if an attached client supports it)
+    local function has_highlight_capability()
+        for _, c in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+            if c:supports_method("textDocument/documentHighlight") then
+                return true
+            end
+        end
+        return false
+    end
+
     vim.api.nvim_create_autocmd("CursorHold", {
+        buffer = bufnr,
         callback = function()
-            vim.lsp.buf.document_highlight()
+            if has_highlight_capability() then
+                pcall(vim.lsp.buf.document_highlight)
+            end
         end,
     })
 
     vim.api.nvim_create_autocmd("CursorMoved", {
+        buffer = bufnr,
         callback = function()
-            vim.lsp.buf.clear_references()
+            pcall(vim.lsp.buf.clear_references)
         end,
     })
 end

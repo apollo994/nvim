@@ -157,4 +157,24 @@ require("lazy").setup({
     require("Comment").setup()
   end,
   },
+
+  -- Copilot inline ghost-text suggestions
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+    cmd = "Copilot",
+    config = function()
+      require("config.copilot")
+    end,
+  },
+
+  -- AI sidebar (Claude, Codex, etc.)
+  {
+    "folke/sidekick.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = function()
+      require("config.sidekick")
+    end,
+    event = "VeryLazy",
+  },
 })

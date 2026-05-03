@@ -37,6 +37,11 @@ Uses OSC 52 protocol (`vim.g.clipboard`) for clipboard support over SSH/remote s
 ### Indentation
 Tabs (not spaces), width = 4. Set in `lua/settings.lua`.
 
+### AI Integrations
+- `folke/sidekick.nvim` (`lua/config/sidekick.lua`): Claude/Codex/etc. CLI sidebar (`<leader>aa`). NES is disabled — sidekick is used for chat only.
+- `github/copilot.vim` (`lua/config/copilot.lua`): inline ghost-text suggestions. `<Tab>` is reserved for cmp/snippets, so suggestions are accepted with `<C-l>` (insert mode). `copilot_no_tab_map` is set to prevent the default `<Tab>` hijack.
+- Per-system one-time setup: `:Copilot setup` (sign in via device code) and `claude` CLI on `$PATH`.
+
 ## Key Mappings Reference
 
 | Action | Keymap |
@@ -46,8 +51,8 @@ Tabs (not spaces), width = 4. Set in `lua/settings.lua`.
 | Find files (Telescope) | `<leader>ff` |
 | Live grep (Telescope) | `<leader>fg` |
 | List buffers (Telescope) | `<leader><space>` |
-| Next buffer | `<Tab>` |
-| Prev buffer | `<S-Tab>` |
+| Next buffer | `<leader><Tab>` |
+| Prev buffer | `<leader><S-Tab>` |
 | Jump to buffer 1/2/3 | `<leader>1` / `<leader>2` / `<leader>3` |
 | Close buffer | `<leader>bc` |
 | **Windows** | |
@@ -83,3 +88,12 @@ Tabs (not spaces), width = 4. Set in `lua/settings.lua`.
 | Toggle line comment | `gcc` |
 | Toggle visual comment | `gc` |
 | Toggle block comment | `gbc` / `gb` |
+| **AI** | |
+| Toggle Claude sidebar | `<leader>aa` |
+| Toggle Claude (named) | `<leader>ac` |
+| Send buffer context to CLI | `<leader>as` |
+| Send visual selection to CLI | `<leader>av` |
+| Prompt picker | `<leader>ap` |
+| Select CLI tool | `<leader>at` |
+| Focus CLI window | `<leader>af` |
+| Accept Copilot suggestion (insert) | `<C-l>` |
