@@ -19,10 +19,9 @@ require("lazy").setup({
   -- Syntax highlighting
   {
       "nvim-treesitter/nvim-treesitter",
+      branch = "main",
+      lazy = false,
       build = ":TSUpdate",
-      dependencies = {
-          "nvim-treesitter/nvim-treesitter-textobjects",
-      },
       config = function()
         require("config.treesitter")
       end,
@@ -41,7 +40,8 @@ require("lazy").setup({
   -- Addition module to move in object and function
   {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      dependencies = { "nvim-treesitter" }
+      branch = "main",
+      dependencies = { "nvim-treesitter" },
   },
 
   -- Fuzzy finder

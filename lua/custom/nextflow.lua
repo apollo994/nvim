@@ -1,24 +1,17 @@
--- Hot patch nvim-lspconfig to add Nextflow language server
-require('lspconfig.configs').nextflow_ls = {
-  default_config = {
-    cmd = { 'java', '-jar', vim.fn.stdpath('config') .. '/bin/language-server-all.jar' },
-    filetypes = { 'nextflow' },
-    root_dir = function(fname)
-      local util = require 'lspconfig.util'
-      return util.root_pattern('nextflow.config')(fname) or util.find_git_ancestor(fname)
-    end,
+vim.lsp.config("nextflow_ls", {
+    cmd = { "java", "-jar", vim.fn.stdpath("config") .. "/bin/language-server-all.jar" },
+    filetypes = { "nextflow" },
+    root_markers = { "nextflow.config", ".git" },
     settings = {
-      nextflow = {
-        files = {
-          exclude = { '.git', '.nf-test', 'work' },
+        nextflow = {
+            files = {
+                exclude = { ".git", ".nf-test", "work" },
+            },
         },
-      },
     },
-  },
-}
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
 
-require('lspconfig').nextflow_ls.setup {
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
-}
+vim.lsp.enable("nextflow_ls")
 
-vim.treesitter.language.register('groovy', 'nextflow')
+vim.treesitter.language.register("groovy", "nextflow")
