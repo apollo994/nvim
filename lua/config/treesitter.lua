@@ -15,7 +15,7 @@ local ensure_installed = {
     "groovy",
 }
 
-require("nvim-treesitter").install(ensure_installed)
+-- require("nvim-treesitter").install(ensure_installed)
 
 vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
@@ -31,30 +31,49 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Incremental selection (was removed from nvim-treesitter main; reimplement minimally)
-local function start_incremental()
-    local node = vim.treesitter.get_node()
-    if not node then return end
+-- TSNodes are userdata and can't live in buffer variables, so the selection
+-- stack is kept module-local, keyed by buffer.
+local inc_stack = {}
+
+vim.api.nvim_create_autocmd({ "BufDelete", "BufWipeout" }, {
+    callback = function(args)
+        inc_stack[args.buf] = nil
+    end,
+})
+
+local function select_node(node)
     local srow, scol, erow, ecol = node:range()
     vim.fn.setpos("'<", { 0, srow + 1, scol + 1, 0 })
     vim.fn.setpos("'>", { 0, erow + 1, ecol, 0 })
     vim.cmd("normal! gv")
-    vim.b.ts_inc_node = node
+end
+
+local function start_incremental()
+    local node = vim.treesitter.get_node()
+    if not node then return end
+    inc_stack[vim.api.nvim_get_current_buf()] = { node }
+    select_node(node)
 end
 
 local function expand_incremental()
-    local node = vim.b.ts_inc_node
-    if not node then start_incremental() return end
-    local parent = node:parent()
-    if not parent then return end
-    local srow, scol, erow, ecol = parent:range()
-    vim.fn.setpos("'<", { 0, srow + 1, scol + 1, 0 })
-    vim.fn.setpos("'>", { 0, erow + 1, ecol, 0 })
-    vim.cmd("normal! gv")
-    vim.b.ts_inc_node = parent
+    local stack = inc_stack[vim.api.nvim_get_current_buf()]
+    if not stack or #stack == 0 then return start_incremental() end
+    local parent = stack[#stack]:parent()
+    if not parent then return select_node(stack[#stack]) end
+    stack[#stack + 1] = parent
+    select_node(parent)
+end
+
+local function shrink_incremental()
+    local stack = inc_stack[vim.api.nvim_get_current_buf()]
+    if not stack or #stack < 2 then return end
+    stack[#stack] = nil
+    select_node(stack[#stack])
 end
 
 vim.keymap.set("n", "<leader>v", start_incremental, { desc = "Start treesitter selection" })
 vim.keymap.set("x", "<leader>v", expand_incremental, { desc = "Expand treesitter selection" })
+vim.keymap.set("x", "<leader>V", shrink_incremental, { desc = "Shrink treesitter selection" })
 
 -- Textobjects (main branch API)
 local ok_to, tobj = pcall(require, "nvim-treesitter-textobjects")
