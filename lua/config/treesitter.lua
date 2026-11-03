@@ -15,7 +15,16 @@ local ensure_installed = {
     "groovy",
 }
 
--- require("nvim-treesitter").install(ensure_installed)
+-- Parsers are compiled locally with the tree-sitter CLI.
+-- install() is async and a no-op for parsers already present, so missing ones
+-- are fetched on startup. Existing parsers are refreshed by `build = ":TSUpdate"`
+-- in plugins.lua (runs whenever lazy.nvim updates nvim-treesitter) and manually
+-- via :TSUpdate.
+if vim.fn.executable("tree-sitter") == 1 then
+    require("nvim-treesitter").install(ensure_installed)
+else
+    vim.notify("tree-sitter CLI not found on $PATH; parsers won't be installed", vim.log.levels.WARN)
+end
 
 vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
